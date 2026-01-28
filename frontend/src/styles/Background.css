@@ -1,0 +1,193 @@
+/**
+ * Background component styles
+ * Now uses DaisyUI theme colors
+ */
+
+.background-container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  min-height: 300px;
+  background: oklch(var(--b1));
+  overflow: hidden;
+  border: none;
+  margin: 0;
+  padding: 0;
+  isolation: isolate;
+}
+
+.background-container::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: 
+    radial-gradient(circle at 20% 80%, oklch(var(--p) / 0.1) 0%, transparent 50%),
+    radial-gradient(circle at 80% 20%, oklch(var(--s) / 0.08) 0%, transparent 50%),
+    radial-gradient(circle at 40% 40%, oklch(var(--a) / 0.05) 0%, transparent 50%);
+  pointer-events: none;
+  z-index: -1;
+}
+
+.background-container canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100% !important;
+  height: 100% !important;
+  cursor: crosshair;
+  transition: opacity 0.3s ease-in-out;
+}
+
+.background-container:hover canvas {
+  opacity: 0.95;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .background-container {
+    min-height: 200px;
+  }
+  
+  .background-container canvas {
+    cursor: default;
+  }
+}
+
+/* High DPI displays */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+  .background-container {
+    image-rendering: -webkit-optimize-contrast;
+    image-rendering: crisp-edges;
+  }
+}
+
+/* Reduced motion preference */
+@media (prefers-reduced-motion: reduce) {
+  .background-container {
+    animation: none;
+  }
+  
+  .background-container::before {
+    animation: none;
+  }
+}
+
+/* Print styles */
+@media print {
+  .background-container {
+    background: white !important;
+    min-height: 200px;
+  }
+  
+  .background-container::before {
+    display: none;
+  }
+}
+
+/* Accessibility focus styles */
+.background-container:focus {
+  outline: 2px solid oklch(var(--p));
+  outline-offset: 2px;
+}
+
+.background-container:focus:not(:focus-visible) {
+  outline: none;
+}
+
+/* Loading state */
+.background-container.loading {
+  background: linear-gradient(90deg, oklch(var(--b1)) 0%, oklch(var(--b2)) 50%, oklch(var(--b1)) 100%);
+  background-size: 200% 100%;
+  animation: loading-shimmer 2s infinite;
+}
+
+@keyframes loading-shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+/* Performance optimizations */
+.background-container.will-change {
+  will-change: transform;
+}
+
+/* Container variations */
+.background-container.compact {
+  min-height: 150px;
+  border-radius: 8px;
+}
+
+.background-container.rounded {
+  border-radius: 16px;
+}
+
+.background-container.bordered {
+  border: 1px solid oklch(var(--bc) / 0.1);
+  box-shadow: 0 8px 32px oklch(var(--bc) / 0.1);
+}
+
+/* Error state */
+.background-container.error {
+  background: oklch(var(--er) / 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: oklch(var(--er));
+  font-family: system-ui, sans-serif;
+}
+
+.background-container.error::after {
+  content: "Unable to load background effect";
+  text-align: center;
+  padding: 20px;
+}
+
+/* Legacy class support (for backward compatibility) */
+.liquidChrome-container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  min-height: 300px;
+  background: oklch(var(--b1));
+  overflow: hidden;
+  border: none;
+  margin: 0;
+  padding: 0;
+  isolation: isolate;
+}
+
+.liquidChrome-container::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: 
+    radial-gradient(circle at 20% 80%, oklch(var(--p) / 0.1) 0%, transparent 50%),
+    radial-gradient(circle at 80% 20%, oklch(var(--s) / 0.08) 0%, transparent 50%),
+    radial-gradient(circle at 40% 40%, oklch(var(--a) / 0.05) 0%, transparent 50%);
+  pointer-events: none;
+  z-index: -1;
+}
+
+.liquidChrome-container canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100% !important;
+  height: 100% !important;
+  cursor: crosshair;
+  transition: opacity 0.3s ease-in-out;
+}
+
+.liquidChrome-container:hover canvas {
+  opacity: 0.95;
+}
